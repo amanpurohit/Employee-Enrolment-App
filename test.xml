@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <tryton>
     <data>
+        <menuitem name="Hello World" id="menu_hello_world" sequence="10" />
     </data>
 </tryton>
