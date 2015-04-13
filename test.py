@@ -7,58 +7,113 @@
 """
 from trytond.model import fields, ModelSQL, ModelView
 from trytond.pool import PoolMeta
+from trytond.pyson import Eval
 
-__all__ = ['Employee']
+__all__ = ['PersonalDetails', 'Education']
+
 __metaclass__ = PoolMeta
 
-STATES = {}
+STATES = {
+    'readonly': ~Eval('active'),
+}
 
-DEPENDS = []
+DEPENDS = ['active']
 
 
-class Employee(ModelSQL, ModelView):
+class PersonalDetails:
 
-    "Employee"
-    __name__ = "company.employee"
+    "Personal Details"
+    __name__ = "party.party"
 
     gender = fields.Selection([
         ('male', 'M'),
         ('female', 'F'),
-        ('undefined', 'N/A'),
+        ('undefined', 'Do not wish to mention'),
     ], 'Gender', required=True,
         states=STATES, depends=DEPENDS)
 
-    passport_id = fields.Char(
-        "Passport Id",
-        size=15,
-        states=STATES,
-        depends=DEPENDS,
-        required=True)
+    date_of_birth = fields.Date(
+        "Date of Birth", required=True, states=STATES, depends=DEPENDS
+    )
 
-    pan = fields.Char(
-        "PAN",
+    place_of_birth = fields.Char(
+        "Place of Birth", required=True, states=STATES, depends=DEPENDS
+    )
+
+    height = fields.Numeric(
+        "Height", states=STATES, depends=DEPENDS
+    )
+
+    weight = fields.Numeric(
+        "Weight", states=STATES, depends=DEPENDS
+    )
+
+    blood_group = fields.Char(
+        "Blood Group", states=STATES, depends=DEPENDS
+    )
+
+    identification_mark = fields.Char(
+        "Identification Mark", states=STATES, depends=DEPENDS
+    )
+
+    pan_card_number = fields.Char(
+        "PAN Card Number",
         size=10,
+        required=True,
         states=STATES,
-        depends=DEPENDS,
-        required=True)
+        depends=DEPENDS)
+
+    marital_status = fields.Selection([
+        ('single', 'Single'),
+        ('married', 'Married')
+    ], 'Maritial Status', required=True, states=STATES, depends=DEPENDS
+    )
+
+    hobbies = fields.Text(
+        "Hobbies", states=STATES, depends=DEPENDS
+    )
+
+    education = fields.One2Many(
+        'party.education',
+        'party', 'Education', states=STATES, depends=DEPENDS
+    )
 
     _sql_error_messages = {
         'uniq_error': 'This field must be unique.',
         'null_error': 'This field must not be null'
     }
 
-    @classmethod
-    def __setup__(cls):
-        super(Employee, cls).__setup__()
-        cls._set_states_depends(['company', 'party'])
-
     @staticmethod
     def default_gender():
         return 'male'
 
-    @classmethod
-    def _set_states_depends(cls, arg_list):
-        for string in arg_list:
-            module = getattr(cls, string)
-            module.states = STATES
-            module.depends = DEPENDS
+
+class Education(ModelSQL, ModelView):
+    'Education'
+    __name__ = 'party.education'
+
+    party = fields.Many2One(
+        'party.party', 'Party', required=True,
+        select=True
+    )
+    degree = fields.Char(
+        "Degree",
+        required=True,
+        depends=DEPENDS,
+        states=STATES)
+    stream = fields.Char(
+        "Stream",
+        required=True,
+        depends=DEPENDS,
+        states=STATES)
+    grade = fields.Char("Grade", required=True, depends=DEPENDS, states=STATES)
+    university = fields.Char(
+        "University",
+        required=True,
+        depends=DEPENDS,
+        states=STATES)
+    year_of_completion = fields.Char(
+        "Year of Completion",
+        required=True,
+        depends=DEPENDS,
+        states=STATES)

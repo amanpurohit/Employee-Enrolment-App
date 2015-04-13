@@ -6,11 +6,12 @@
     :license: BSD, see LICENSE for more details.
 """
 from trytond.pool import Pool
-from test import Employee
+from test import PersonalDetails, Education
 
 
 def register():
     Pool.register(
-        Employee,
+        PersonalDetails,
+        Education,
         module='test', type_='model'
     )
