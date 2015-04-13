@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<data>
+    <xpath expr="/tree/field[@name='code']" position="after">
+        <field name="gender"/>
+        <field name="date_of_birth"/>
+        <field name="place_of_birth"/>
+        <field name="height"/>
+        <field name="weight"/>
+        <field name="blood_group"/>
+        <field name="identification_mark"/>
+        <field name="pan_card_number"/>
+        <field name="education"/>
+        <field name="marital_status"/>
+        <field name="hobbies"/>
+    </xpath>
+</data>

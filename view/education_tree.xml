@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<tree string="Parties">
+    <field name="party" />
+    <field name="degree"/>
+    <field name="grade"/>
+    <field name="stream"/>
+    <field name="university"/>
+    <field name="year_of_completion"/>
+</tree>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<form string="Educational Details" col="6">
+    <notebook colspan="6">
+        <page string="Educational Details" id="edudetail">
+            <label name="party" />
+            <field name="party" />
+            <newline />
+            <label name="degree"/>
+            <field name="degree"/>
+            <label name="stream"/>
+            <field name="stream"/>
+            <label name="grade"/>
+            <field name="grade"/>
+            <label name="university"/>
+            <field name="university"/>
+            <label name="year_of_completion"/>
+            <field name="year_of_completion"/>
+        </page>
+    </notebook>
+</form>
