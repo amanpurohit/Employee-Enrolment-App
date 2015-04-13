@@ -13,9 +13,7 @@ __all__ = ['PersonalDetails', 'Education']
 
 __metaclass__ = PoolMeta
 
-STATES = {
-    'readonly': ~Eval('active'),
-}
+STATES = {}
 
 DEPENDS = ['active']
 
