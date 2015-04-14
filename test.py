@@ -8,12 +8,15 @@
 from trytond.model import fields, ModelSQL, ModelView
 from trytond.pool import PoolMeta
 from trytond.pyson import Eval
+from datetime import date, timedelta
 
 __all__ = ['PersonalDetails', 'Education']
 
 __metaclass__ = PoolMeta
 
-STATES = {}
+STATES = {
+    'readonly': ~Eval('active', True)
+}
 
 DEPENDS = ['active']
 
@@ -76,17 +79,19 @@ class PersonalDetails:
         'party', 'Education', states=STATES, depends=DEPENDS
     )
 
-    _sql_error_messages = {
-        'uniq_error': 'This field must be unique.',
-        'null_error': 'This field must not be null'
-    }
-
     @staticmethod
     def default_gender():
         return 'male'
 
+    def pre_validate(self):
+        user_dob = self.date_of_birth
+        current_date = date.today()
+        if ((current_date - user_dob) < timedelta(hours=7300)):
+            raise ValueError("Date of birth not valid")
+
 
 class Education(ModelSQL, ModelView):
+
     'Education'
     __name__ = 'party.education'
 
