@@ -9,6 +9,9 @@ from trytond.model import fields, ModelSQL, ModelView
 from trytond.pool import PoolMeta
 from trytond.pyson import Eval
 from datetime import date, timedelta
+import logging
+
+logging.basicConfig()
 
 __all__ = ['PersonalDetails', 'Education']
 
@@ -102,21 +105,17 @@ class Education(ModelSQL, ModelView):
     degree = fields.Char(
         "Degree",
         required=True,
-        depends=DEPENDS,
         states=STATES)
     stream = fields.Char(
         "Stream",
         required=True,
-        depends=DEPENDS,
         states=STATES)
-    grade = fields.Char("Grade", required=True, depends=DEPENDS, states=STATES)
+    grade = fields.Char("Grade", required=True, states=STATES)
     university = fields.Char(
         "University",
         required=True,
-        depends=DEPENDS,
         states=STATES)
     year_of_completion = fields.Char(
         "Year of Completion",
         required=True,
-        depends=DEPENDS,
         states=STATES)

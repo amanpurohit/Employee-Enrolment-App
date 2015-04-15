@@ -5,6 +5,7 @@ setup.py
 ./test.xml
 ./tryton.cfg
 ./tests/__init__.py
+./tests/test_test.py
 ./tests/test_views_depends.py
 ./view/education_form.xml
 ./view/education_tree.xml
