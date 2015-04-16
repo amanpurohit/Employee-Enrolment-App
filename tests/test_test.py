@@ -93,7 +93,7 @@ def suite():
     """
     test_suite = trytond.tests.test_tryton.suite()
     test_suite.addTests(
-        unittest.TestLoader().loadTestFromTestCase(TestTestModule)
+        unittest.TestLoader().loadTestsFromTestCase(TestTestModule)
     )
     return test_suite
 

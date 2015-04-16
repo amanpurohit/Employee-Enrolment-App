@@ -102,17 +102,17 @@ class Education(ModelSQL, ModelView):
     degree = fields.Char(
         "Degree",
         required=True,
-        states=STATES)
+    )
     stream = fields.Char(
         "Stream",
         required=True,
-        states=STATES)
-    grade = fields.Char("Grade", required=True, states=STATES)
+    )
+    grade = fields.Char("Grade", required=True)
     university = fields.Char(
         "University",
         required=True,
-        states=STATES)
+    )
     year_of_completion = fields.Char(
         "Year of Completion",
         required=True,
-        states=STATES)
+    )
