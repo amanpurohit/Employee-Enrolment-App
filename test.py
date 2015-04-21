@@ -96,23 +96,18 @@ class Education(ModelSQL, ModelView):
     __name__ = 'party.education'
 
     party = fields.Many2One(
-        'party.party', 'Party', required=True,
-        select=True
+        'party.party', 'Party', select=True
     )
     degree = fields.Char(
-        "Degree",
-        required=True,
+        "Degree"
     )
     stream = fields.Char(
         "Stream",
-        required=True,
     )
-    grade = fields.Char("Grade", required=True)
+    grade = fields.Char("Grade")
     university = fields.Char(
-        "University",
-        required=True,
+        "University"
     )
     year_of_completion = fields.Char(
-        "Year of Completion",
-        required=True,
+        "Year of Completion"
     )
